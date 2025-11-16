@@ -7,7 +7,7 @@ class Todo {
 
   Todo copyWith({String? id, String? title, bool? isComp}) {
     return Todo(
-      id: id ?? this.title,
+      id: id ?? this.id,
       title: title ?? this.title,
       isComp: isComp ?? this.isComp,
     );

@@ -1,10 +1,20 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:sample_riverpod_mvc/models/models.dart';
 
-final todoListProvider =
-    StateNotifierProvider<TodoController, List<Todo>>(
-      (ref) => TodoController(),
-    );
+final todoListProvider = StateNotifierProvider<TodoController, List<Todo>>(
+  (ref) => TodoController(),
+);
+
+final todoByIdProvider = Provider.family<Todo?, String>((ref, id) {
+  final todos = ref.watch(todoListProvider);
+  for (final todo in todos) {
+    if (todo.id == id) {
+      return todo;
+    }
+  }
+  return null;
+});
 
 class TodoController extends StateNotifier<List<Todo>> {
   TodoController() : super(const []);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_riverpod_mvc/controllers/todo_controller.dart';
 import 'package:sample_riverpod_mvc/models/models.dart';
+import 'package:sample_riverpod_mvc/views/todo/detail/todo_detail_page.dart';
 
 class TodoList extends ConsumerWidget {
   final List<Todo> todos;
@@ -34,6 +35,11 @@ class TodoList extends ConsumerWidget {
                 ref.read(todoListProvider.notifier).removeTodo(todo.id),
             icon: Icon(Icons.delete),
           ),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => TodoDetailPage(id: todo.id)),
+            );
+          },
         );
       },
       separatorBuilder: (_, __) => Divider(height: 1),

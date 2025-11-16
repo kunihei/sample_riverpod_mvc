@@ -35,18 +35,7 @@ class _TodoListPageState extends ConsumerState<TodoListPage> {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _textController,
-                    decoration: InputDecoration(hintText: 'やることを入力してください'),
-                  ),
-                ),
-                SizedBox(width: 8),
-                TextButton(onPressed: _submit, child: const Text('追加')),
-              ],
-            ),
+            TodoInput(controller: _textController, submit: _submit),
             SizedBox(height: 20),
             Expanded(child: TodoList(todos: todos)),
           ],
